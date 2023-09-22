@@ -1,29 +1,18 @@
 import React from "react";
 
 import "../styles/TopicList.scss";
+import TopicListItem from "./TopicListItem";
+import topics from '../mocks/topics';
 
-const sampleDataForTopicList = [
-  {
-    id: "1",
-    slug: "topic-1",
-    title: "Nature",
-  },
-  {
-    id: "2",
-    slug: "topic-2",
-    title: "Travel",
-  },
-  {
-    id: "3",
-    slug: "topic-3",
-    title: "People",
-  },
-];
+const topicListArray = [];
+for (let i = 0; i < topics.length; i++) {
+  topicListArray.push(<TopicListItem key={topics[i].id} topicInfo={topics[i]} />);
+}
 
 const TopicList = () => {
   return (
     <div className="top-nav-bar__topic-list">
-      {/* Insert React */}
+      {topicListArray}
     </div>
   );
 };
