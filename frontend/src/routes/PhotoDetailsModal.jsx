@@ -20,7 +20,7 @@ const PhotoDetailsModal = (props) => {
       </button>
       <div className="photo-details-modal__item" key={props.photoInfo.id}>
         <PhotoFavButton addToSelected={props.changeFavourites} photoId={props.photoInfo.id} selected={itemIsSelected} />
-        <img src={props.photoInfo.urls.regular} alt="" className="photo-details-modal__image" />
+        <img src={props.photoInfo.urls.full} alt="" className="photo-details-modal__image" />
         <div className="photo-details-modal__header">
           <img src={props.photoInfo.user.profile} alt={`${props.photoInfo.username} image`} className="photo-list__user-profile" />
           <div className=".photo-details-modal__photographer-details ">
