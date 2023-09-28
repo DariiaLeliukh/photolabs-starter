@@ -13,8 +13,7 @@ const HomeRoute = (props) => {
       <PhotoList
         addToFavorites={props.changeFavourites}
         favorites={props.favorites}
-        toShowModal={props.toShowModal}
-        passPhotoInfo={props.passPhotoInfo} />
+        toShowModal={props.toShowModal} />
     </div>
   );
 };

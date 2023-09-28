@@ -7,7 +7,7 @@ import photos from '../mocks/photos';
 const PhotoList = (props) => {
   const photosArray = [];
   for (let i = 0; i < photos.length; i++) {
-    photosArray.push(<PhotoListItem key={photos[i].id} photoInfo={photos[i]} addToSelected={props.addToFavorites} favorites={props.favorites} toShowModal={props.toShowModal} passPhotoInfo={props.passPhotoInfo} />);
+    photosArray.push(<PhotoListItem key={photos[i].id} photoInfo={photos[i]} addToSelected={props.addToFavorites} favorites={props.favorites} toShowModal={props.toShowModal} />);
   }
   return (
     <ul className="photo-list">

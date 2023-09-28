@@ -2,13 +2,11 @@ import { useState } from 'react';
 
 const useApplicationData = () => {
   const [state, setState] = useState({
-    favorites: []
+    favorites: [],
+    isModalVisible: false,
+    dataForModal: {},
   });
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [dataForModal, setDataForModal] = useState({});
-  // const [favorites, setFavorites] = useState([]);
 
-  //TODO: add or REMOVE from favorites
   const changeFavourites = (id) => {
     if (!state.favorites.includes(id)) {
       const freshArray = [...state.favorites, id];
@@ -25,29 +23,18 @@ const useApplicationData = () => {
     }
   };
 
-  const changeShowModal = () => {
-    if (isModalVisible) {
-      setIsModalVisible(false);
+  const changeShowModal = (photoInfo) => {
+    if (state.isModalVisible) {
+      setState({ ...state, isModalVisible: false, dataForModal: {} });
       return;
     }
-    setIsModalVisible(true);
+    setState({ ...state, isModalVisible: true, dataForModal: photoInfo });
   };
-  const passPhotoInfo = (photoInfo) => {
-    if (dataForModal) {
-      setDataForModal({});
-    }
-    setDataForModal(photoInfo);
-  };
-
 
   return {
     state,
-    isModalVisible,
-    dataForModal,
-    // favorites,
     changeFavourites,
     changeShowModal,
-    passPhotoInfo
   };
 };
 export default useApplicationData;

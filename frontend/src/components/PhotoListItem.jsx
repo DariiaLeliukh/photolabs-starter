@@ -8,8 +8,8 @@ const PhotoListItem = (props) => {
   const itemIsSelected = props.favorites.includes(props.photoInfo.id) ? true : false;
 
   const testFn = () => {
-    props.toShowModal();
-    props.passPhotoInfo(props.photoInfo);
+    props.toShowModal(props.photoInfo);
+    // props.passPhotoInfo(props.photoInfo);
   };
 
   return (

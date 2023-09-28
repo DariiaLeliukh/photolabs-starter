@@ -9,18 +9,14 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 const App = () => {
   const {
     state,
-    isModalVisible,
-    dataForModal,
-    favorites,
     changeFavourites,
     changeShowModal,
-    passPhotoInfo
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute toShowModal={changeShowModal} passPhotoInfo={passPhotoInfo} changeFavourites={changeFavourites} favorites={state.favorites} />
-      {isModalVisible && <PhotoDetailsModal toShowModal={changeShowModal} changeFavourites={changeFavourites} photoInfo={dataForModal} favorites={state.favorites} />}
+      <HomeRoute toShowModal={changeShowModal} changeFavourites={changeFavourites} favorites={state.favorites} />
+      {state.isModalVisible && <PhotoDetailsModal toShowModal={changeShowModal} changeFavourites={changeFavourites} photoInfo={state.dataForModal} favorites={state.favorites} />}
     </div>
   );
 };

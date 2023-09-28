@@ -6,11 +6,10 @@ import PhotoListItem from 'components/PhotoListItem';
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-
   const itemIsSelected = props.favorites.includes(props.photoInfo.id) ? true : false;
   const photosArray = [];
   for (let photo in props.photoInfo.similar_photos) {
-    photosArray.push(<PhotoListItem key={props.photoInfo.similar_photos[photo].id} photoInfo={props.photoInfo.similar_photos[photo]} addToSelected={props.addToFavorites} favorites={props.favorites} />);
+    photosArray.push(<PhotoListItem key={props.photoInfo.similar_photos[photo].id} photoInfo={props.photoInfo.similar_photos[photo]} addToSelected={props.changeFavourites} favorites={props.favorites} />);
   }
 
   return (
