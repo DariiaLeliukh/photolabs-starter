@@ -9,7 +9,6 @@ const PhotoListItem = (props) => {
 
   const testFn = () => {
     props.toShowModal(props.photoInfo);
-    // props.passPhotoInfo(props.photoInfo);
   };
 
   return (

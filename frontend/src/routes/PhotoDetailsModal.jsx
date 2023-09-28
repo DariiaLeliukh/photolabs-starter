@@ -9,12 +9,12 @@ const PhotoDetailsModal = (props) => {
   const itemIsSelected = props.favorites.includes(props.photoInfo.id) ? true : false;
   const photosArray = [];
   for (let photo in props.photoInfo.similar_photos) {
-    photosArray.push(<PhotoListItem key={props.photoInfo.similar_photos[photo].id} photoInfo={props.photoInfo.similar_photos[photo]} addToSelected={props.changeFavourites} favorites={props.favorites} />);
+    photosArray.push(<PhotoListItem key={props.photoInfo.similar_photos[photo].id} photoInfo={props.photoInfo.similar_photos[photo]} addToSelected={props.changeFavourites} favorites={props.favorites} toShowModal={props.toShowModal} />);
   }
 
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={props.toShowModal}>
+      <button className="photo-details-modal__close-button" onClick={props.closeModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className="photo-details-modal__item" key={props.photoInfo.id}>
@@ -28,7 +28,7 @@ const PhotoDetailsModal = (props) => {
           </div>
         </div>
       </div>
-      {photosArray && <p className="photo-details-modal__related">Related Photos</p>}
+      {photosArray.length > 0 && <p className="photo-details-modal__related">Related Photos</p>}
       <div className="photo-details-modal__images">
         {photosArray}
       </div>

@@ -10,13 +10,14 @@ const App = () => {
   const {
     state,
     changeFavourites,
-    changeShowModal,
+    showModal,
+    closeModal
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute toShowModal={changeShowModal} changeFavourites={changeFavourites} favorites={state.favorites} />
-      {state.isModalVisible && <PhotoDetailsModal toShowModal={changeShowModal} changeFavourites={changeFavourites} photoInfo={state.dataForModal} favorites={state.favorites} />}
+      <HomeRoute toShowModal={showModal} changeFavourites={changeFavourites} favorites={state.favorites} />
+      {state.isModalVisible && <PhotoDetailsModal closeModal={closeModal} changeFavourites={changeFavourites} photoInfo={state.dataForModal} favorites={state.favorites} toShowModal={showModal} />}
     </div>
   );
 };

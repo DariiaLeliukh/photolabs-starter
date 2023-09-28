@@ -23,18 +23,19 @@ const useApplicationData = () => {
     }
   };
 
-  const changeShowModal = (photoInfo) => {
-    if (state.isModalVisible) {
-      setState({ ...state, isModalVisible: false, dataForModal: {} });
-      return;
-    }
+  const showModal = (photoInfo) => {
     setState({ ...state, isModalVisible: true, dataForModal: photoInfo });
+  };
+
+  const closeModal = () => {
+    setState({ ...state, isModalVisible: false, dataForModal: {} });
   };
 
   return {
     state,
     changeFavourites,
-    changeShowModal,
+    showModal,
+    closeModal
   };
 };
 export default useApplicationData;
