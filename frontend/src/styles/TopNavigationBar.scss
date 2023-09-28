@@ -8,6 +8,10 @@
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;
   height: 72px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .top-nav-bar__logo {
@@ -17,4 +21,9 @@
   color: #111;
   text-underline-position: auto;
   margin-left: 24px;
+}
+
+.top-nav-bar__menu {
+  display: flex;
+  align-items: center;
 }

@@ -29,6 +29,7 @@ const PhotoDetailsModal = (props) => {
           </div>
         </div>
       </div>
+      {photosArray && <p className="photo-details-modal__related">Related Photos</p>}
       <div className="photo-details-modal__images">
         {photosArray}
       </div>

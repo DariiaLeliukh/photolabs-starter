@@ -3,14 +3,14 @@
   margin-left: 24px;
 }
 
-.topic-list__item span {
+.topic-list__item a {
   font-size: 18px;
   text-decoration: none;
   font-weight: 500;
-  color: #2b2b2b;
+  color: #000;
 
   &:hover {
     text-decoration: overline;
-    color: #111;
+    color: rgb(200, 0, 0);
   }
 }
