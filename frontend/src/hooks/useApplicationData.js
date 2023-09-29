@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import photos from '../mocks/photos';
 
 const useApplicationData = () => {
   const [state, setState] = useState({
@@ -24,7 +25,8 @@ const useApplicationData = () => {
   };
 
   const showModal = (photoInfo) => {
-    setState({ ...state, isModalVisible: true, dataForModal: photoInfo });
+    const fullPhotoInfo = photos.find((element) => element.id === photoInfo.id);
+    setState({ ...state, isModalVisible: true, dataForModal: fullPhotoInfo });
   };
 
   const closeModal = () => {

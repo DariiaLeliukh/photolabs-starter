@@ -192,8 +192,8 @@ const photos = [
   {
     ...photo2,
     similar_photos: {
-      photo2,
-      photo3,
+      photo1,
+      photo6,
       photo4,
       photo5,
     }
@@ -201,8 +201,8 @@ const photos = [
   {
     ...photo3,
     similar_photos: {
+      photo1,
       photo2,
-      photo3,
       photo4,
       photo5,
     }
@@ -210,19 +210,19 @@ const photos = [
   {
     ...photo4,
     similar_photos: {
-      photo2,
+      photo6,
+      photo7,
       photo3,
-      photo4,
       photo5,
     }
   },
   {
     ...photo5,
     similar_photos: {
+      photo1,
       photo2,
       photo3,
       photo4,
-      photo5,
     }
   },
   {
@@ -246,7 +246,7 @@ const photos = [
   {
     ...photo8,
     similar_photos: {
-      photo2,
+      photo1,
       photo3,
       photo4,
       photo5,
@@ -257,7 +257,7 @@ const photos = [
     similar_photos: {
       photo2,
       photo3,
-      photo4,
+      photo6,
       photo5,
     }
   },
