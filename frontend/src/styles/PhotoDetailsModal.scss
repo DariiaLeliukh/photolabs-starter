@@ -25,7 +25,7 @@
 }
 
 .photo-details-modal__images {
-  margin: 0;
+  margin: 0 0 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -37,6 +37,12 @@
   max-width: 60%;
   text-align: center;
   margin: 0 auto;
+
+  @media (max-width: 767px) {
+    max-width: fit-content;
+    width: 100%;
+  }
+
 }
 
 .photo-details-modal__image {
