@@ -9,11 +9,13 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
       <TopNavigation
-        isFavPhotoExist={props.favorites.length > 0 ? true : false} />
+        isFavPhotoExist={props.favorites.length > 0 ? true : false}
+        topicData={props.topicData} />
       <PhotoList
         addToFavorites={props.changeFavourites}
         favorites={props.favorites}
-        toShowModal={props.toShowModal} />
+        toShowModal={props.toShowModal}
+        photoData={props.photoData} />
     </div>
   );
 };

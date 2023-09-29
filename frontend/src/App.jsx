@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 
 import './App.scss';
 import useApplicationData from 'hooks/useApplicationData';
@@ -16,8 +16,22 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute toShowModal={showModal} changeFavourites={changeFavourites} favorites={state.favorites} />
-      {state.isModalVisible && <PhotoDetailsModal closeModal={closeModal} changeFavourites={changeFavourites} photoInfo={state.dataForModal} favorites={state.favorites} toShowModal={showModal} />}
+      <HomeRoute
+        toShowModal={showModal}
+        changeFavourites={changeFavourites}
+        favorites={state.favorites}
+        photoData={state.photoData}
+        topicData={state.topicData}
+      />
+      {state.isModalVisible &&
+        <PhotoDetailsModal
+          closeModal={closeModal}
+          changeFavourites={changeFavourites}
+          photoInfo={state.dataForModal}
+          favorites={state.favorites}
+          toShowModal={showModal}
+        />
+      }
     </div>
   );
 };

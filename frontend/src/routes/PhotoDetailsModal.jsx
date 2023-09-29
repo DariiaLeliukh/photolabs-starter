@@ -9,7 +9,14 @@ const PhotoDetailsModal = (props) => {
   const itemIsSelected = props.favorites.includes(props.photoInfo.id) ? true : false;
   const photosArray = [];
   for (let photo in props.photoInfo.similar_photos) {
-    photosArray.push(<PhotoListItem key={props.photoInfo.similar_photos[photo].id} photoInfo={props.photoInfo.similar_photos[photo]} addToSelected={props.changeFavourites} favorites={props.favorites} toShowModal={props.toShowModal} />);
+    photosArray.push(
+      <PhotoListItem
+        key={props.photoInfo.similar_photos[photo].id}
+        photoInfo={props.photoInfo.similar_photos[photo]}
+        addToSelected={props.changeFavourites}
+        favorites={props.favorites}
+        toShowModal={props.toShowModal} />
+    );
   }
 
   return (
