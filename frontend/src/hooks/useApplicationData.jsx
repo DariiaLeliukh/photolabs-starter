@@ -28,6 +28,15 @@ const useApplicationData = () => {
     topicData: []
   });
 
+  //loading all topics once at entering the page
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: 'setTopics', topics: data });
+      });
+  }, []);
+
   //loading all photos once at entering the page
   useEffect(() => {
     fetch('http://localhost:8001/api/photos')
@@ -37,14 +46,21 @@ const useApplicationData = () => {
       });
   }, []);
 
-  //loading all topics once at entering the page
+  //loading all photos for topic when entering the page
   useEffect(() => {
-    fetch('http://localhost:8001/api/topics')
-      .then(res => res.json())
-      .then(data => {
-        dispatch({ type: 'setTopics', topics: data });
-      });
-  }, []);
+    const topic = window.location.pathname.replace("/", "");
+    if (topic) {
+      const foundTopic = state.topicData.find((element) => element.slug === topic);
+      if (foundTopic) {
+        fetch(`http://localhost:8001/api/topics/photos/${foundTopic.id}`)
+          .then(res => res.json())
+          .then(data => {
+            dispatch({ type: 'setPhotos', photos: data });
+          });
+      }
+
+    }
+  }, [state.topicData]);
 
   //adds or removes item from favourites array
   const changeFavourites = (id) => {
