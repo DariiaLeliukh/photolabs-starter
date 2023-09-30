@@ -1,7 +1,5 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
-
 # Photolabs
+A React application where you can view photos pulled from the API, see photos by categories and 'like' them to have a list of favourites. You cna open each photo in a sepaarte modal and see full-size photo and similar photos.
 
 ## Setup
 
@@ -22,3 +20,12 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+## Run
+You need to run both frontend and backend at the same time
+
+## Screenshots
+
+!["Main screen"](./screens/main-screen.png)
+!["Modal screen"](./screens/modal.png)
+
