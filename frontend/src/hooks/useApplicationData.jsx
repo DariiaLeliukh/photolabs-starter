@@ -46,21 +46,16 @@ const useApplicationData = () => {
       });
   }, []);
 
-  //loading all photos for topic when entering the page
-  useEffect(() => {
-    const topic = window.location.pathname.replace("/", "");
-    if (topic) {
-      const foundTopic = state.topicData.find((element) => element.slug === topic);
-      if (foundTopic) {
-        fetch(`http://localhost:8001/api/topics/photos/${foundTopic.id}`)
-          .then(res => res.json())
-          .then(data => {
-            dispatch({ type: 'setPhotos', photos: data });
-          });
-      }
-
+  //loading all photos for topic when topic is clicked
+  const loadPhotosByTopic = (topicId) => {
+    if (topicId) {
+      fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+        .then(res => res.json())
+        .then(data => {
+          dispatch({ type: 'setPhotos', photos: data });
+        });
     }
-  }, [state.topicData]);
+  };
 
   //adds or removes item from favourites array
   const changeFavourites = (id) => {
@@ -98,7 +93,8 @@ const useApplicationData = () => {
     state,
     changeFavourites,
     showModal,
-    closeModal
+    closeModal,
+    loadPhotosByTopic
   };
 };
 export default useApplicationData;

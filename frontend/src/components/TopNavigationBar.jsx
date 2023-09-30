@@ -7,9 +7,9 @@ import FavBadge from './FavBadge';
 const TopNavigation = (props) => {
   return (
     <div className="top-nav-bar">
-      <a href="/" className="top-nav-bar_homelink"><span className="top-nav-bar__logo">PhotoLabs</span></a>
+      <span className="top-nav-bar__logo">PhotoLabs</span>
       <div className="top-nav-bar__menu">
-        <TopicList topicData={props.topicData} />
+        <TopicList topicData={props.topicData} loadPhotosByTopic={props.loadPhotosByTopic} />
         <FavBadge isFavPhotoExist={props.isFavPhotoExist} />
       </div>
 

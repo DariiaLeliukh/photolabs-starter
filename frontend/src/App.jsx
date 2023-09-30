@@ -10,7 +10,8 @@ const App = () => {
     state,
     changeFavourites,
     showModal,
-    closeModal
+    closeModal,
+    loadPhotosByTopic
   } = useApplicationData();
 
   return (
@@ -21,6 +22,7 @@ const App = () => {
         favorites={state.favorites}
         photoData={state.photoData}
         topicData={state.topicData}
+        loadPhotosByTopic={loadPhotosByTopic}
       />
       {state.isModalVisible &&
         <PhotoDetailsModal

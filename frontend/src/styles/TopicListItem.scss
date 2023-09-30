@@ -3,7 +3,7 @@
   margin-left: 24px;
 }
 
-.topic-list__item a {
+.topic-list__item span {
   font-size: 18px;
   text-decoration: none;
   font-weight: 500;
@@ -12,5 +12,6 @@
   &:hover {
     text-decoration: overline;
     color: rgb(200, 0, 0);
+    cursor: pointer;
   }
 }

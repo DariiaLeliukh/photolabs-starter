@@ -5,7 +5,7 @@ import TopicListItem from "./TopicListItem";
 const TopicList = (props) => {
   const topicListArray = [];
   for (let i = 0; i < props.topicData.length; i++) {
-    topicListArray.push(<TopicListItem key={props.topicData[i].id} topicInfo={props.topicData[i]} />);
+    topicListArray.push(<TopicListItem key={props.topicData[i].id} topicInfo={props.topicData[i]} loadPhotosByTopic={props.loadPhotosByTopic} />);
   }
 
   return (

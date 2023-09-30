@@ -14,11 +14,6 @@
   }
 }
 
-.top-nav-bar_homelink {
-  text-decoration: none;
-  ;
-}
-
 .top-nav-bar__logo {
   text-decoration: overline;
   font-weight: 500;
@@ -26,10 +21,6 @@
   color: #111;
   text-underline-position: auto;
   margin-left: 24px;
-
-  &:hover {
-    color: rgb(200, 0, 0);
-  }
 }
 
 .top-nav-bar__menu {
