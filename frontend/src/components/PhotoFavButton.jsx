@@ -1,13 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 const PhotoFavButton = (props) => {
-  // const [selected, setSelected] = useState(props.selected);
 
   const changeSelected = () => {
-    // setSelected(selected === true ? false : true);
     props.addToSelected(props.photoId);
   };
 
