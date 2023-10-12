@@ -62,33 +62,29 @@ module.exports = db => {
   });
 
   router.post("/photos", (request, response) => {
-    console.log('FEtch POST body: ', request.body);
-    console.log('Files');
-    console.log(request.files["uploadedPhoto"]);
-
     const sampleFile = request.files["uploadedPhoto"];
-    var uploadPath = path.resolve(__dirname, '../../../frontend/public/', sampleFile.name);
+    var uploadPath = path.resolve(__dirname, '../public/images', sampleFile.name);
 
     console.log(uploadPath);
 
 
     // Use the mv() method to place the file somewhere on your server
-    // sampleFile.mv(uploadPath, function(err) {
-    //   if (err){
-    //     return res.status(500).send(err);
-    //   }
-    //   response.send({ uploadPath });
-    // });
     sampleFile.mv(uploadPath, function(err) {
       if (err) {
         return res.status(500).send(err);
       }
-      response.send({ uploadPath });
+      const protocol = request.protocol;
+      const host = request.hostname;
+      const port = process.env.PORT || 8001;
+      const serverUrl = `${protocol}://${host}:${port}`;
+      db.query(`
+     INSERT INTO photo (FULL_URL, REGULAR_URL, CITY, COUNTRY) VALUES ('${sampleFile.name}', '${sampleFile.name}', 'Montreal', 'Canada');
+     `).then(({ rows }) => {
+        response.send({ uploadPath, rows });
+      });
     });
-    // const protocol = request.protocol;
-    // const host = request.hostname;
-    // const port = process.env.PORT || 8001;
-    // const serverUrl = `${protocol}://${host}:${port}`;
+
+
 
     // db.query(`
     // INSERT INTO photo (FULL_URL, REGULAR_URL, CITY, COUNTRY) VALUES ('new-full-photo.jpeg', 'new-regular-photo.jpeg', 'Montreal', 'Canada');
