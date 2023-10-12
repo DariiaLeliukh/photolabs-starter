@@ -11,7 +11,8 @@ const HomeRoute = (props) => {
       <TopNavigation
         isFavPhotoExist={props.favorites.length > 0 ? true : false}
         topicData={props.topicData}
-        loadPhotosByTopic={props.loadPhotosByTopic} />
+        loadPhotosByTopic={props.loadPhotosByTopic}
+        createPhoto={props.createPhoto} />
       <PhotoList
         addToFavorites={props.changeFavourites}
         favorites={props.favorites}

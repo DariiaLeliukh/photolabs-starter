@@ -4,6 +4,7 @@ import './App.scss';
 import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
+import UploadPhotoModal from 'routes/UploadPhotoModal';
 
 const App = () => {
   const {
@@ -11,7 +12,10 @@ const App = () => {
     changeFavourites,
     showModal,
     closeModal,
-    loadPhotosByTopic
+    loadPhotosByTopic,
+    createPhoto,
+    closeUploadPhotoModal,
+    showUploadPhotoModal
   } = useApplicationData();
 
   return (
@@ -23,6 +27,7 @@ const App = () => {
         photoData={state.photoData}
         topicData={state.topicData}
         loadPhotosByTopic={loadPhotosByTopic}
+        createPhoto={createPhoto}
       />
       {state.isModalVisible &&
         <PhotoDetailsModal
@@ -31,6 +36,13 @@ const App = () => {
           photoInfo={state.dataForModal}
           favorites={state.favorites}
           toShowModal={showModal}
+        />
+      }
+      {state.isUploadPhotoModalVisible &&
+        <UploadPhotoModal
+          closeModal={closeModal}
+          closeUploadPhotoModal={closeUploadPhotoModal}
+          toShowUploadPhotoModal={showUploadPhotoModal}
         />
       }
     </div>

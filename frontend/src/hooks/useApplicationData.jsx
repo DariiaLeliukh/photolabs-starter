@@ -5,8 +5,10 @@ const useApplicationData = () => {
     switch (action.type) {
       case 'showModal':
         return { ...state, isModalVisible: true, dataForModal: action.photos.find((element) => element.id === action.photoInfo.id) };
+      case 'showUploadPhotoModal':
+        return { ...state, isUploadPhotoModalVisible: true };
       case 'closeModal':
-        return { ...state, isModalVisible: false, dataForModal: {} };
+        return { ...state, isModalVisible: false, dataForModal: {}, isUploadPhotoModalVisible: false };
       case 'setFavorites':
         return { ...state, favorites: action.freshArray };
       case 'setPhotos':
@@ -23,6 +25,7 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, {
     favorites: [],
     isModalVisible: false,
+    isUploadPhotoModalVisible: false,
     dataForModal: {},
     photoData: [],
     topicData: []
@@ -89,12 +92,19 @@ const useApplicationData = () => {
     dispatch({ type: 'closeModal' });
   };
 
+  //add photo button action
+  const createPhoto = () => {
+    console.log('something clicked to create photo');
+    dispatch({ type: 'showUploadPhotoModal' });
+  };
+
   return {
     state,
     changeFavourites,
     showModal,
     closeModal,
-    loadPhotosByTopic
+    loadPhotosByTopic,
+    createPhoto
   };
 };
 export default useApplicationData;
