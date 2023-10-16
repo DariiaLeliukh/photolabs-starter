@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 import '../styles/PhotoDetailsModal.scss';
+import '../styles/UploadPhotoModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const UploadPhotoModal = (props) => {
@@ -39,7 +40,7 @@ const UploadPhotoModal = (props) => {
     // Send formData object
     axios.post("http://localhost:8001/api/photos", formData)
       .then((data) => {
-        console.log(data);
+        props.refreshAfterUpload();
       });
   };
 
@@ -51,16 +52,7 @@ const UploadPhotoModal = (props) => {
 
       return (
         <div>
-          <h2>File Details:</h2>
-          <p>File Name: {selectedFile.name}</p>
-
-          <p>File Type: {selectedFile.type}</p>
-
-          <p>
-            Last Modified:{" "}
-            {selectedFile.lastModifiedDate.toDateString()}
-          </p>
-
+          <p className="uploaded-file-name">You uploaded: {selectedFile.name}</p>
         </div>
       );
     } else {
@@ -74,17 +66,24 @@ const UploadPhotoModal = (props) => {
   };
 
   return (
-    <div className="photo-details-modal">
+    <div className="photo-details-modal photo-upload-modal">
       <button className="photo-details-modal__close-button" onClick={props.closeModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <div>
-        <input type="file" onChange={onFileChange} />
-        <button onClick={onFileUpload}>
+      <div className='container'>
+        {!selectedFile &&
+          <p>Choose file and click &quot;Upload&quot;</p>
+        }
+        {/* <input type="file" onChange={onFileChange} /> */}
+        <label className="file">
+          <input type="file" id="file" aria-label="File browser example" onChange={onFileChange} />
+          <span className="file-custom"></span>
+        </label>
+        {fileData()}
+        <button className='upload-button ' onClick={onFileUpload}>
           Upload!
         </button>
       </div>
-      {fileData()}
     </div>
   );
 };

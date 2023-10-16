@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const path = require('path');
+const generateUniqueId = require('generate-unique-id');
 
 module.exports = db => {
   router.get("/photos", (request, response) => {
@@ -62,35 +63,33 @@ module.exports = db => {
   });
 
   router.post("/photos", (request, response) => {
-    const sampleFile = request.files["uploadedPhoto"];
-    var uploadPath = path.resolve(__dirname, '../public/images', sampleFile.name);
+    const uploadedPhoto = request.files["uploadedPhoto"];
+    const imageInfo = uploadedPhoto.name.split('.');
+    const imageFormat = imageInfo[imageInfo.length - 1];
+    const fileName = generateUniqueId({
+      length: 32,
+      useLetters: true,
+      useNumbers: false,
+    });
 
-    console.log(uploadPath);
-
+    var uploadPath = path.resolve(__dirname, '../public/images', `${fileName}.${imageFormat}`);
 
     // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv(uploadPath, function(err) {
+    uploadedPhoto.mv(uploadPath, function(err) {
       if (err) {
         return res.status(500).send(err);
       }
       const protocol = request.protocol;
       const host = request.hostname;
       const port = process.env.PORT || 8001;
-      const serverUrl = `${protocol}://${host}:${port}`;
+
+      // TODO: make uploading with user info and category
       db.query(`
-     INSERT INTO photo (FULL_URL, REGULAR_URL, CITY, COUNTRY) VALUES ('${sampleFile.name}', '${sampleFile.name}', 'Montreal', 'Canada');
+     INSERT INTO photo (FULL_URL, REGULAR_URL, CITY, COUNTRY, USER_ID, TOPIC_ID) VALUES ('${fileName}.${imageFormat}', '${fileName}.${imageFormat}', 'Montreal', 'Canada', 1, 1);
      `).then(({ rows }) => {
-        response.send({ uploadPath, rows });
+        response.send({ rows });
       });
     });
-
-
-
-    // db.query(`
-    // INSERT INTO photo (FULL_URL, REGULAR_URL, CITY, COUNTRY) VALUES ('new-full-photo.jpeg', 'new-regular-photo.jpeg', 'Montreal', 'Canada');
-    // `).then(({ rows }) => {
-    //   response.json(rows);
-    // });
   });
 
   return router;

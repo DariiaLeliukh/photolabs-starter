@@ -15,7 +15,8 @@ const App = () => {
     loadPhotosByTopic,
     createPhoto,
     closeUploadPhotoModal,
-    showUploadPhotoModal
+    showUploadPhotoModal,
+    refreshAfterUpload
   } = useApplicationData();
 
   return (
@@ -43,6 +44,7 @@ const App = () => {
           closeModal={closeModal}
           closeUploadPhotoModal={closeUploadPhotoModal}
           toShowUploadPhotoModal={showUploadPhotoModal}
+          refreshAfterUpload={refreshAfterUpload}
         />
       }
     </div>

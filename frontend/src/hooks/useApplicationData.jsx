@@ -7,6 +7,8 @@ const useApplicationData = () => {
         return { ...state, isModalVisible: true, dataForModal: action.photos.find((element) => element.id === action.photoInfo.id) };
       case 'showUploadPhotoModal':
         return { ...state, isUploadPhotoModalVisible: true };
+      case 'hideUploadPhotoModal':
+        return { ...state, isUploadPhotoModalVisible: false };
       case 'closeModal':
         return { ...state, isModalVisible: false, dataForModal: {}, isUploadPhotoModalVisible: false };
       case 'setFavorites':
@@ -48,6 +50,17 @@ const useApplicationData = () => {
         dispatch({ type: 'setPhotos', photos: data });
       });
   }, []);
+
+  const refreshAfterUpload = () => {
+    console.log('refreshAfter Upload');
+
+    dispatch({ type: 'hideUploadPhotoModal' });
+    fetch('http://localhost:8001/api/photos')
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: 'setPhotos', photos: data });
+      });
+  };
 
   //loading all photos for topic when topic is clicked
   const loadPhotosByTopic = (topicId) => {
@@ -94,7 +107,6 @@ const useApplicationData = () => {
 
   //add photo button action
   const createPhoto = () => {
-    console.log('something clicked to create photo');
     dispatch({ type: 'showUploadPhotoModal' });
   };
 
@@ -104,7 +116,8 @@ const useApplicationData = () => {
     showModal,
     closeModal,
     loadPhotosByTopic,
-    createPhoto
+    createPhoto,
+    refreshAfterUpload
   };
 };
 export default useApplicationData;
